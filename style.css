@@ -1,0 +1,699 @@
+:root {
+    --card-bg: rgba(30, 30, 35, 0.65);
+    --card-border: rgba(255, 255, 255, 0.07);
+    --icon-color: rgba(255, 255, 255, 0.9);
+    --icon-glow: 0 0 15px rgba(255, 255, 255, 0.5);
+    --purple-glow: rgba(206, 206, 206, 0.4);
+    --purple-dark: #000000;
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --font-primary: 'Outfit', sans-serif;
+}
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-primary);
+    color: white;
+    background: var(--purple-dark) !important;
+    perspective: 1000px;
+    overflow: hidden;
+    position: relative;
+}
+body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('petals.png') repeat;
+    opacity: 0.1;
+    animation: falling 20s linear infinite;
+    pointer-events: none;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 380px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+.profile-card, .link-card, .music-player, .discord-card {
+    width: 100%;
+    max-width: 380px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: 25px;
+    padding: 20px;
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(20px);
+    transform-style: preserve-3d;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.profile-card:hover, .link-card:hover, .discord-card:hover {
+    transform: translateY(-5px) translateZ(20px);
+    box-shadow: 0 15px 35px var(--purple-glow);
+}
+.profile-card:active, .link-card:active, .discord-card:active {
+    transform: translateY(2px) translateZ(-10px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.profile-card {
+    padding: 25px 20px;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(
+        165deg,
+        rgba(30, 30, 35, 0.65) 0%,
+        rgba(25, 25, 30, 0.65) 100%
+    );
+}
+.views {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 0.9em;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 12px;
+}
+.badges {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 12px 0;
+}
+.badges i {
+    font-size: 0.85em;
+    color: var(--icon-color);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+.bio {
+    font-size: 0.9em;
+    opacity: 0.7;
+    margin: 8px 0;
+    font-family: var(--font-primary);
+    font-weight: 300;
+    letter-spacing: 0.2px;
+}
+.link-card {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 15px;
+}
+.platform-icon, .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+.arrow {
+    margin-left: auto;
+    opacity: 0.7;
+    transition: transform 0.3s ease;
+}
+.user-badges {
+    margin-left: auto;
+    display: flex;
+    gap: 8px;
+}
+.user-badges i {
+    font-size: 0.8em;
+    color: var(--icon-color);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+@keyframes falling {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(100%);
+    }
+}
+.profile-card::after, .link-card::after, .discord-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 25px;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 70%);
+    pointer-events: none;
+}
+.profile-card:hover::after, .link-card:hover::after, .discord-card:hover::after {
+    opacity: 0.5;
+}
+h2 {
+    font-size: 1.4em;
+    margin: 8px 0;
+    font-weight: 600;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    font-family: var(--font-primary);
+    letter-spacing: 0.3px;
+}
+.username {
+    font-size: 0.95em;
+    font-weight: 500;
+}
+.link-text {
+    font-weight: 500;
+    color: var(--icon-color);
+}
+.telegram-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.telegram-icon i {
+    font-size: 1.2em;
+    color: var(--icon-color);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+.fa-gem {
+    background: linear-gradient(45deg, #ff61ab, #ff3d77) !important;
+    -webkit-background-clip: text !important;
+}
+.fa-star {
+    background: linear-gradient(45deg, #ffd700, #ffa500) !important;
+    -webkit-background-clip: text !important;
+}
+.fa-crown {
+    background: linear-gradient(45deg, #ffd700, #ff8c00) !important;
+    -webkit-background-clip: text !important;
+}
+.fa-key {
+    background: linear-gradient(45deg, #00ff88, #00cc88) !important;
+    -webkit-background-clip: text !important;
+}
+.fa-clock {
+    background: linear-gradient(45deg, #87ceeb, #4169e1) !important;
+    -webkit-background-clip: text !important;
+}
+.badges i:hover {
+    filter: brightness(1.2);
+    animation: pulse 1s infinite;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+.card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease;
+    will-change: transform;
+    transform: perspective(1000px) translate3d(0, 0, 0) rotateX(0) rotateY(0);
+    border: 1px solid var(--card-border);
+    background: linear-gradient(
+        165deg,
+        rgba(30, 30, 35, 0.65) 0%,
+        rgba(25, 25, 30, 0.65) 100%
+    );
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.card-3d:hover {
+    transition: none;
+    background: linear-gradient(
+        165deg,
+        rgba(35, 35, 40, 0.75) 0%,
+        rgba(30, 30, 35, 0.75) 100%
+    );
+}
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: -1;
+}
+.badges i, .user-badges i {
+    font-size: 0.85em;
+    color: var(--icon-color);
+    text-shadow: var(--icon-glow);
+    transition: all 0.2s ease;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background: none;
+}
+.badges i:hover, .user-badges i:hover {
+    color: white;
+    text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+.discord-card {
+    padding: 16px 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(
+        165deg,
+        rgba(30, 30, 35, 0.65) 0%,
+        rgba(25, 25, 30, 0.65) 100%
+    );
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.discord-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        transparent 50%,
+        rgba(138, 43, 226, 0.1) 100%
+    );
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.discord-card:hover::before {
+    opacity: 1;
+}
+.discord-card {
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+.discord-card:hover {
+    border-color: rgba(138, 43, 226, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(138, 43, 226, 0.2),
+        0 0 0 1px rgba(138, 43, 226, 0.2);
+    transform: translateY(-2px);
+}
+.discord-card .user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 0 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.discord-card:hover .user-avatar {
+    border-color: rgba(138, 43, 226, 0.5);
+    transform: scale(1.05);
+}
+.discord-card .username {
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 0.95em;
+    letter-spacing: 0.2px;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+.discord-card .user-badges {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.discord-card .user-badges i {
+    font-size: 0.85em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.discord-card .user-badges i.fa-gem {
+    color: #ff73fa;
+    text-shadow: 0 0 10px rgba(255, 115, 250, 0.5);
+}
+.discord-card .user-badges i.fa-yin-yang {
+    color: #45ddc0;
+    text-shadow: 0 0 10px rgba(69, 221, 192, 0.5);
+}
+.discord-card .user-badges i.fa-check-circle {
+    color: #7289da;
+    text-shadow: 0 0 10px rgba(114, 137, 218, 0.5);
+}
+.discord-card .user-badges i:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+}
+.discord-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle at center,
+        rgba(138, 43, 226, 0.1) 0%,
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+.discord-card:hover::after {
+    opacity: 1;
+}
+.discord-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        0 0 20px var(--purple-glow);
+}
+.discord-card:active {
+    transform: scale(0.98) translateY(0);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+@keyframes badgePulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+.discord-card .user-badges i {
+    animation: badgePulse 2s infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.discord-card .user-badges i:nth-child(1) { animation-delay: 0s; }
+.discord-card .user-badges i:nth-child(2) { animation-delay: 0.2s; }
+.discord-card .user-badges i:nth-child(3) { animation-delay: 0.4s; }
+.discord-card.loading {
+    opacity: 0.7;
+}
+.discord-card.loading .username::after {
+    content: '...';
+    animation: loading 1.5s infinite;
+}
+@keyframes loading {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+}
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+.status-dot.online { background-color: #43b581; }
+.status-dot.idle { background-color: #faa61a; }
+.status-dot.dnd { background-color: #f04747; }
+.status-dot.offline { background-color: #747f8d; }
+.discord-card .user-badges i {
+    font-size: 0.85em;
+    color: var(--icon-color);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    margin-left: 8px;
+}
+.discord-card .user-badges i.fa-gem {
+    color: #ff73fa;
+    text-shadow: 0 0 8px rgba(255, 115, 250, 0.4);
+}
+.discord-card .user-badges i.fa-yin-yang {
+    color: #45ddc0;
+    text-shadow: 0 0 8px rgba(69, 221, 192, 0.4);
+}
+.discord-card .user-badges i.fa-check-circle {
+    color: #7289da;
+    text-shadow: 0 0 8px rgba(114, 137, 218, 0.4);
+}
+.discord-card .user-badges i::after {
+    font-family: var(--font-primary);
+    font-weight: 300;
+    font-size: 0.8em;
+}
+.link-card:hover {
+    background: linear-gradient(
+        165deg,
+        rgba(35, 35, 40, 0.9) 0%,
+        rgba(30, 30, 35, 0.9) 100%
+    );
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.link-card:hover .arrow {
+    transform: translateX(3px);
+}
+.rain-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+.card-3d {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.music-player {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    cursor: default;
+    box-shadow: none;
+    width: 100%;
+    max-width: 340px;
+}
+.song-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+.album-cover {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: none;
+    flex-shrink: 0;
+}
+.track-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    flex: 1;
+}
+.song-title, .artist-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.song-title {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--icon-color);
+}
+.artist-name {
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75em;
+    opacity: 0.7;
+}
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+.progress {
+    position: absolute;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.1s linear;
+}
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.control-btn {
+    background: none;
+    border: none;
+    color: var(--icon-color);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.play-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+.play-btn .play-icon,
+.play-btn .pause-icon {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+}
+.play-btn .pause-icon {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+.play-btn.playing .play-icon {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+}
+.play-btn.playing .pause-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+@keyframes playingPulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+.play-btn.playing {
+    animation: playingPulse 2s infinite;
+    background: rgba(255, 255, 255, 0.2);
+}
+.control-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.15);
+}
+.control-btn i { 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+} 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} 
+.container a {
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    max-width: 380px;
+    display: block;  
+}
+.container a .link-card {
+    margin: 0;  
+    width: 100%;
+}
+.container a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+.container a .card-3d:hover {
+    transform: translateY(-5px) translateZ(20px);
+    box-shadow: 0 15px 35px var(--purple-glow);
+}
+.container a .card-3d:active {
+    transform: translateY(2px) translateZ(-10px) scale(0.98);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.portfolio-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.portfolio-icon i {
+    font-size: 1.5em !important;
+    color: var(--icon-color) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.bio-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bio-icon i {
+    font-size: 1.5em !important;
+    color: var(--icon-color) !important;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.portfolio-icon i:hover,
+.bio-icon i:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; 
+    z-index: -1; 
+    pointer-events: none; 
+}
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); 
+    z-index: 0;
+}
